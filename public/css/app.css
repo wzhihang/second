@@ -8350,17 +8350,6 @@ button.close {
   }
 }
 
-body {
-  padding-top: 60px;
-  font-family: Raleway,sans-serif;
-  font-size: .9rem;
-  font-weight: 400;
-  line-height: 1.6;
-  color: #212529;
-  text-align: left;
-  background-color: #f5f8fa;
-}
-
 section {
   overflow: auto;
 }
@@ -8413,6 +8402,14 @@ p {
 
 #logo:hover {
   color: #fff;
+}
+
+#logout {
+  cursor: default;
+}
+
+#logout:hover {
+  background-color: transparent;
 }
 
 /**footer**/
@@ -8515,5 +8512,9 @@ input {
 
 .panel {
   margin-top: 50px;
+}
+
+.checkbox {
+  margin-left: 20px;
 }
 
