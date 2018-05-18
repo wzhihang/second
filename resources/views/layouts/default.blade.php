@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>@yield('title','second APP')</title>
     <link rel="stylesheet" href="/css/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 </head>
 <body>
 @include('layouts._header')
 <div class="container">
+    @include('shared._message')
     @yield('content')
     @include('layouts._footer')
 </div>
