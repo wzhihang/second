@@ -21,16 +21,22 @@ class SessionsController extends Controller
 
     public function store(Request $request)
     {
-        $credential =  $this->validate($request,[
-            'email' => 'required|email|max:255',
+        $credentials = $this->validate($request,[
+            'email' => 'required|email|max:50',
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($credential,$request->has('remember'))) {
-            session()->flash('success','Welcome back');
-            return redirect()->intended( route('users.show',[Auth::user()]));
-        } else {
-            session()->flash('danger','Sorry, email and password mismatch');
+        if(Auth::attempt($credentials,$request->has('remember'))){
+            if (Auth::user()->activated) {
+                session()->flash('success','欢迎回来!');
+                return redirect()->route('users.show',[Auth::user()]);
+            } else {
+                session()->flash('warning', '你的账号未激活，请检查邮箱中的注册邮件进行激活。');
+                return redirect('/');
+            }
+
+        }else{
+            session()->flash('danger','很抱歉，您的邮箱和密码不匹配');
             return redirect()->back();
         }
     }
@@ -38,7 +44,6 @@ class SessionsController extends Controller
     public function destroy()
     {
         Auth::logout();
-        session()->flash('success','退出成功');
-        return redirect()->route('login');
-    }
-}
+        session()->flash('success','你已成功退出');
+        return redirect('login');
+    }}
