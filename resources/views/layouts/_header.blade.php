@@ -4,6 +4,7 @@
             <a href="/" id="logo">Second App</a>
             <nav>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{route('home')}}">首页</a></li>
                     @if (Auth::check())
                         <li><a href="{{route('users.index')}}">用户列表</a></li>
                         <li class="dropdown">
